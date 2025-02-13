@@ -1,15 +1,8 @@
 version: '3.8'
 services:
   backend:
-    build: ./backend  # Path to the backend Dockerfile
+    build: ./backend
     ports:
       - "5000:5000"
     environment:
       - FLASK_ENV=development
-    depends_on:
-      - frontend
-
-  frontend:
-    build: ./backend/frontend  # Path to the frontend Dockerfile
-    ports:
-      - "8080:80"

@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: traffic-backend
+spec:
+  replicas: 3  # One replica per zone
+  selector:
+    matchLabels:
+      app: traffic-backend
+  template:
+    metadata:
+      labels:
+        app: traffic-backend
+    spec:
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchExpressions:
+                  - key: app
+                    operator: In
+                    values:
+                      - traffic-backend
+              topologyKey: "topology.kubernetes.io/zone"
+      containers:
+        - name: traffic-backend
+          image: gcr.io/traffic-app-450800/traffic-backend:latest
+          ports:
+            - containerPort: 5000
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "128Mi"
+            limits:
+              cpu: "500m"
+              memory: "512Mi"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: traffic-backend-service
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 80
+      targetPort: 5000
+  selector:
+    app: traffic-backend

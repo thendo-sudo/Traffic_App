@@ -1,5 +1,5 @@
-# Use an official Python runtime as the base image
-FROM python:3.9-slim
+# Use an official Python runtime as the base image with specific platform
+FROM --platform=linux/amd64 python:3.9-slim
 
 # Set the working directory in the container
 WORKDIR /app
@@ -17,4 +17,4 @@ COPY . .
 EXPOSE 5000
 
 # Command to run the Flask app
-CMD ["python", "app.py"]
+CMD ["python", "-u", "app.py"]
