@@ -3,7 +3,7 @@ name: CI/CD Pipeline
 on:
   push:
     branches:
-      - main  # Trigger on pushes to the main branch
+      - main  # Trigger on pushes to the main branch dfsfd
   pull_request:
     branches:
       - main  # Trigger on pull requests to the main branch
@@ -63,4 +63,3 @@ jobs:
           kubectl rollout status deployment/traffic-backend
 
 
-#
