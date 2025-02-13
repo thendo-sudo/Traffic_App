@@ -1,5 +1,5 @@
 name: CI/CD Pipeline
-#testtt
+
 on:
   push:
     branches:
@@ -27,7 +27,7 @@ jobs:
 
       - name: Build and push Docker image
         run: |
-          docker build -t gcr.io/traffic-app-450800/traffic-backend:latest ./traffic-monitoring-app/backend
+          docker build -t gcr.io/traffic-app-450800/traffic-backend:latest ./backend
           docker push gcr.io/traffic-app-450800/traffic-backend:latest
 
   deploy:
@@ -59,7 +59,5 @@ jobs:
 
       - name: Deploy to Kubernetes
         run: |
-          kubectl apply -f traffic-monitoring-app/k8s/deployment.yaml
-          kubectl rollout status deployment/traffic-backend# Updated workflow file
-# Trigger update
-# Trigger update
+          kubectl apply -f k8s/deployment.yaml
+          kubectl rollout status deployment traffic-backend -n default
