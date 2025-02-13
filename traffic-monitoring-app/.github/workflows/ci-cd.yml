@@ -3,7 +3,7 @@ name: CI/CD Pipeline
 on:
   push:
     branches:
-      - main  # Trigger on pushes to the main branch dfsfd
+      - main  # Trigger on pushes to the main branch dfsfd vv
   pull_request:
     branches:
       - main  # Trigger on pull requests to the main branch fff
