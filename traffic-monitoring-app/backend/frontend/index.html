@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Traffic Monitoring Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            max-width: 600px;
+            text-align: center;
+        }
+        h1 {
+            color: #333;
+        }
+        .city-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        .city-buttons button {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            background-color: #76c7c0;
+            color: white;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .city-buttons button:hover {
+            background-color: #5aa6a0;
+        }
+        .metric {
+            margin: 20px 0;
+        }
+        .metric h3 {
+            margin: 0;
+            color: #555;
+        }
+        .progress-bar {
+            width: 100%;
+            height: 20px;
+            background-color: #e0e0e0;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 10px;
+        }
+        .progress {
+            height: 100%;
+            background-color: #76c7c0;
+            border-radius: 10px;
+        }
+        .traffic-status {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        .traffic-status.light { color: green; }
+        .traffic-status.moderate { color: orange; }
+        .traffic-status.heavy { color: red; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Traffic Monitoring Dashboard</h1>
+        <div class="city-buttons">
+            <button data-city="johannesburg">Johannesburg</button>
+            <button data-city="pretoria">Pretoria</button>
+            <button data-city="capetown">Cape Town</button>
+            <button data-city="newyork">New York</button>
+            <button data-city="vienna">Vienna</button>
+        </div>
+        <div class="metric">
+            <h3>Current Speed: <span id="currentSpeed">--</span> km/h</h3>
+            <div class="progress-bar">
+                <div id="speedProgress" class="progress"></div>
+            </div>
+        </div>
+        <div class="metric">
+            <h3>Free Flow Speed: <span id="freeFlowSpeed">--</span> km/h</h3>
+        </div>
+        <div class="traffic-status" id="trafficStatus">Select a city to view traffic data.</div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
