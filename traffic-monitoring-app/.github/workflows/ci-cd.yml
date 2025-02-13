@@ -3,10 +3,10 @@ name: CI/CD Pipeline
 on:
   push:
     branches:
-      - main  # Trigger on pushes to the main branch dfsfd vv
+      - main
   pull_request:
     branches:
-      - main  # Trigger on pull requests to the main branch fff
+      - main
 
 jobs:
   build-and-test:
@@ -27,7 +27,7 @@ jobs:
 
       - name: Build and push Docker image
         run: |
-          docker build -t gcr.io/traffic-app-450800/traffic-backend:latest ./backend
+          docker build -t gcr.io/traffic-app-450800/traffic-backend:latest ./traffic-monitoring-app/backend
           docker push gcr.io/traffic-app-450800/traffic-backend:latest
 
   deploy:
@@ -59,7 +59,5 @@ jobs:
 
       - name: Deploy to Kubernetes
         run: |
-          kubectl apply -f k8s/deployment.yaml
+          kubectl apply -f traffic-monitoring-app/k8s/deployment.yaml
           kubectl rollout status deployment/traffic-backend
-
-
