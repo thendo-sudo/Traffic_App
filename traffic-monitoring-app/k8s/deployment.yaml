@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: traffic-backend
 spec:
-  replicas: 3  # One replica per zone
+  replicas: 1  # One replica per zone # Reduced for testing to 1
   selector:
     matchLabels:
       app: traffic-backend
@@ -12,16 +12,17 @@ spec:
       labels:
         app: traffic-backend
     spec:
-      affinity:
-        podAntiAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-            - labelSelector:
-                matchExpressions:
-                  - key: app
-                    operator: In
-                    values:
-                      - traffic-backend
-              topologyKey: "topology.kubernetes.io/zone"
+       #affinity:
+        #podAntiAffinity:
+          #requiredDuringSchedulingIgnoredDuringExecution:
+            #- labelSelector:
+               # matchExpressions:
+                 # - key: app
+                   # operator: In
+                   # values:
+                     # - traffic-backend
+              #topologyKey: "topology.kubernetes.io/zone" 
+              
       containers:
         - name: traffic-backend
           image: gcr.io/traffic-app-450800/traffic-backend:latest
