@@ -25,9 +25,9 @@ spec:
               
       containers:
         - name: traffic-backend
-          image: gcr.io/traffic-app-450800/traffic-backend:latest
+          image: gcr.io/trafficflow-2025/trafficflow-app:latest
           ports:
-            - containerPort: 5000
+            - containerPort: 9000
           resources:
             requests:
               cpu: "100m"
@@ -44,6 +44,6 @@ spec:
   type: LoadBalancer
   ports:
     - port: 80
-      targetPort: 5000
+      targetPort: 9000
   selector:
     app: traffic-backend

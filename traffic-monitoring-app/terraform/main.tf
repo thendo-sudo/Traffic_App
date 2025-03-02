@@ -1,5 +1,5 @@
 provider "google" {
-  project = "traffic-app-450800"
+  project = "trafficflow-2025"
   region  = "us-central1"
 }
 
@@ -9,9 +9,7 @@ resource "google_container_cluster" "traffic_cluster" {
 
   # Enable multi-zonal node pools
   node_locations = [
-    "us-central1-a",
-    "us-central1-b",
-    "us-central1-c"
+    "us-central1-a"
   ]
 
   remove_default_node_pool = true
@@ -22,7 +20,7 @@ resource "google_container_node_pool" "traffic_node_pool" {
   name       = "traffic-node-pool"
   location   = "us-central1"
   cluster    = google_container_cluster.traffic_cluster.name
-  node_count = 3  # One node per zone
+  node_count = 1
 
   node_config {
     machine_type = "e2-medium"
